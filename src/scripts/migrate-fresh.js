@@ -24,8 +24,12 @@ const migrateFresh = async () => {
     await tempConnection.query(`CREATE DATABASE IF NOT EXISTS \`${dbName}\``);
     console.log(`Database "${dbName}" ensured.`);
   } catch (err) {
-    console.error('Error creating database:', err.message);
-    throw err;
+    if (err.code === 'ER_DBACCESS_DENIED_ERROR') {
+      console.warn(`Warning: Could not ensure database existence (Access Denied). Proceeding assuming it already exists.`);
+    } else {
+      console.error('Error creating database:', err.message);
+      throw err;
+    }
   } finally {
     await tempConnection.end();
   }
