@@ -1,0 +1,43 @@
+{
+  "name": "school-erp-backend",
+  "version": "1.0.0",
+  "description": "Production-ready multi-tenant backend for a School ERP SaaS platform.",
+  "main": "index.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "scripts": {
+    "start": "nodemon index.js",
+    "db:migrate": "node src/scripts/migrate.js",
+    "db:migrate:payroll": "node src/scripts/migrate_payroll.js",
+    "db:reset": "node src/scripts/reset-db.js",
+    "db:fresh": "npm run db:reset && npm run db:migrate && npm run db:migrate:payroll",
+    "migrate": "node src/scripts/migrate-fresh.js",
+    "admin:register": "node src/scripts/register-admin.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.41.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "exceljs": "^4.4.0",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "express-validator": "^7.2.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "multer": "^2.1.1",
+    "multer-storage-cloudinary": "^4.0.0",
+    "mysql2": "^3.14.0",
+    "node-fetch": "^3.3.2",
+    "pdfkit": "^0.18.0",
+    "puppeteer": "^24.40.0",
+    "qrcode": "^1.5.4",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
